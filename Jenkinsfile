@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-            	bat 'xcopy /E build "C:\savvi\websites\hello-react"'
+            	bat 'xcopy /E build "C:\\savvi\\websites\\hello-react"'
             }
         }
     }
