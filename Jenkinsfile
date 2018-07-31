@@ -1,20 +1,18 @@
 pipeline {
-    def shell(command) {
-        return bat(returnStdout: true, script: "sh -x -c \"${command}\"").trim()
-    }
     agent { docker { image 'node:6.3' } }
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
-                shell 'npm --version'
-                shell 'SET HOST=hello-react'
-                shell 'npm run build'
+                bat 'npm --version'
+                bat 'SET HOST=hello-react'
+                bat 'npm run build'
             }
         }
         stage('deploy') {
             steps {
-                shell 'npm run serve'
+                bat 'npm run serve'
             }
         }
     }
 }
+
