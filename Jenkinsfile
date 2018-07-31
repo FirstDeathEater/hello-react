@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                bat 'npm run serve'
+            	xcopy /E build C:\savvi\websites\hello-react
             }
         }
     }
