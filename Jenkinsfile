@@ -5,7 +5,7 @@ pipeline {
             steps {
                 bat 'npm --version'
                 bat 'npm install'
-                bat 'echo export function build_number() { return %BUILD_NUMBER% } > build_number.js'
+                bat 'echo export function build_number() { return %BUILD_NUMBER% } > ".\src\\build_number.js"'
                 bat 'set HOST=hello-react && echo %HOST% && npm run build'
             }
         }
