@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import TextFileReader from './TextFileReader';
 import logo from './logo.svg';
 import './App.css';
+import { build_number } from './build_number.json';
 
 class App extends Component {
   render() {
@@ -18,7 +18,7 @@ class App extends Component {
           <strong>Environment:</strong> [{process.env.NODE_ENV}]
         </p>
         <p className="gray">
-          <strong>Release:</strong> 6 {(process.env.NODE_ENV != 'development') ? <TextFileReader txt='buld_number.txt' /> : ""}
+          <strong>Release:</strong> 6 <strong>{ build_number ? 'Build: ' : ""}</strong>{ build_number ? build_number : ""}
         </p>
       </div>
     );
