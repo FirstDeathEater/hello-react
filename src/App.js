@@ -17,7 +17,7 @@ class App extends Component {
           <strong>Environment:</strong> [{process.env.NODE_ENV}]
         </p>
         <p className="gray">
-          <strong>Release:</strong> 5
+          <strong>Release:</strong> 6
         </p>
       </div>
     );

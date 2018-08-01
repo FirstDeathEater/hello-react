@@ -4,10 +4,8 @@ pipeline {
         stage('Build') {
             steps {
                 bat 'npm --version'
-                bat '@set HOST=hello-react'
-                bat 'echo HOST is: %HOST%'
                 bat 'npm install'
-                bat 'npm run build'
+                bat 'set HOST=hello-react && echo %HOST% && npm run build'
             }
         }
         stage('Deploy') {
