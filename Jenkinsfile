@@ -19,20 +19,22 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'echo "Fail!"; exit 1'
+                bat 'echo "Fail!"; exit 1'
             }
         }
     }
     post {
         always {
             echo 'This will always run'
+            echo 'TO DO:'
+            echo '  - modify build to clean up old archived versions of website, if the current build was successful'
         }
         success {
             echo 'This will run only if successful'
         }
         failure {
             echo 'This will run only if failed'
-            echo 'Right now the Test stage should always fail'
+            echo 'Right now the Test stage should always fail, but we don't care.'
         }
         unstable {
             echo 'This will run only if the run was marked as unstable'
