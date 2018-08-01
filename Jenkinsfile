@@ -5,7 +5,7 @@ pipeline {
             steps {
                 bat 'npm --version'
                 bat 'npm install'
-                bat 'echo {"build_number":0} > build_number.json'
+                bat 'echo {"build_number":%BUILD_NUMBER%} > build_number.json'
                 bat 'set HOST=hello-react && echo %HOST% && npm run build'
             }
         }
