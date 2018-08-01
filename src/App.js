@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TextFileReader from './TextFileReader';
 import logo from './logo.svg';
 import './App.css';
 
@@ -17,7 +18,7 @@ class App extends Component {
           <strong>Environment:</strong> [{process.env.NODE_ENV}]
         </p>
         <p className="gray">
-          <strong>Release:</strong> 6
+          <strong>Release:</strong> 6 {(process.env.NODE_ENV != 'development') ? <TextFileReader txt='buld_number.txt' /> : ""}
         </p>
       </div>
     );
