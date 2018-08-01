@@ -34,7 +34,7 @@ pipeline {
         }
         failure {
             echo 'This will run only if failed'
-            echo 'Right now the Test stage should always fail, but we don't care.'
+            echo 'Right now the Test stage should always fail, but we don\'t care.'
         }
         unstable {
             echo 'This will run only if the run was marked as unstable'
