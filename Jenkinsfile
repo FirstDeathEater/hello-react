@@ -34,7 +34,6 @@ pipeline {
             echo 'This will always run'
             echo 'TO DO:'
             echo '  - modify build to clean up old archived versions of website, if the current build was successful'
-            echo '  - figure out if we can set an environment variable in a batch script instead of trying it at the command line where it does not seem to work'
         }
         success {
             echo 'This will run only if successful'
@@ -42,6 +41,9 @@ pipeline {
         failure {
             echo 'This will run only if failed'
             echo 'Right now the Test stage should always fail, but we don\'t care.'
+            mail to: 'team@example.com',
+	                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+             body: "Something is wrong with ${env.BUILD_URL}"
         }
         unstable {
             echo 'This will run only if the run was marked as unstable'
