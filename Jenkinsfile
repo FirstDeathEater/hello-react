@@ -15,15 +15,10 @@ pipeline {
                 bat 'npm run build'
             }
         }
-        stage('Test') {
+        stage('Pre-deploy Tests') {
             steps {
                 bat 'echo "Success!"'
                 bat 'exit /b 0'
-            }
-        }
-	stage('Deploy to Dev?') {
-            steps {
-                input "Ready to deploy to development?"
             }
         }
         stage('Deploy - Development') {
@@ -32,6 +27,25 @@ pipeline {
             	bat 'del C:\\savvi\\websites\\hello-react\\* /f /q'
             	bat 'rmdir C:\\savvi\\websites\\hello-react\\static /s /q'
             	bat 'start cmd.exe /c rc.bat build "C:\\savvi\\websites\\hello-react"'
+            }
+        }
+        stage('Post-deploy Tests') {
+            steps {
+                bat 'echo "Success!"'
+                bat 'exit /b 0'
+            }
+        }
+	stage('Promote to QA env?') {
+	    mail to: 'bella.forrister@welltok.com',
+		 subject: "Bella's Local Jenkins Server - Action Needed Project: ${env.JOB_NAME} Build #${env.BUILD_NUMBER}",
+		 body: "${currentBuild.fullDisplayName} action needed:\n${env.BUILD_URL}"
+            steps {
+                input "Ready to deploy to QA?"
+            }
+        }
+        stage('Deploy - QA') {
+            steps {
+                bat 'echo "There is no QA environment that has been set up!"'
             }
         }
     }
