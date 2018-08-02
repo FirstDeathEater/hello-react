@@ -35,7 +35,7 @@ pipeline {
                 bat 'exit /b 0'
             }
         }
-	stage('Promote to QA env?') {
+	stage('Deploy to QA?') {
 	    mail to: 'bella.forrister@welltok.com',
 		 subject: "Bella's Local Jenkins Server - Action Needed Project: ${env.JOB_NAME} Build #${env.BUILD_NUMBER}",
 		 body: "${currentBuild.fullDisplayName} action needed:\n${env.BUILD_URL}"
