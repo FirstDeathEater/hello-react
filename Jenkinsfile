@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                bat 'echo "Fail!"; exit 1'
+                bat 'echo "Fail!"; exit /b 1'
             }
         }
         stage('Deploy') {
