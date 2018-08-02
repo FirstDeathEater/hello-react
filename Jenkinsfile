@@ -15,17 +15,17 @@ pipeline {
                 bat 'npm run build'
             }
         }
+        stage('Test') {
+            steps {
+                bat 'echo "Fail!"; exit 1'
+            }
+        }
         stage('Deploy') {
             steps {
             	bat 'start cmd.exe /c rc.bat "C:\\savvi\\websites\\hello-react" "C:\\SavviArchive\\websites\\hello_react_%date:~10,4%-%date:~4,2%-%date:~7,2%_%BUILD_NUMBER%"'
             	bat 'del C:\\savvi\\websites\\hello-react\\* /f /q'
             	bat 'rmdir C:\\savvi\\websites\\hello-react\\static /s /q'
             	bat 'start cmd.exe /c rc.bat build "C:\\savvi\\websites\\hello-react"'
-            }
-        }
-        stage('Test') {
-            steps {
-                bat 'echo "Fail!"; exit 1'
             }
         }
     }
