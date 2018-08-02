@@ -13,7 +13,6 @@ pipeline {
                 bat 'echo export function build_number() { return %BUILD_NUMBER% } > ".\\src\\build_number.js"'
                 bat 'echo %HOST%'
                 bat 'npm run build'
-                bat 'echo "Fail!"; exit 1'
             }
         }
         stage('Deploy') {
@@ -39,13 +38,13 @@ pipeline {
         success {
             echo 'This will run only if successful'
             mail to: 'bella.forrister@welltok.com',
-	                 subject: "Bella's Local Jenkins Server - Successful Build: ${env.JOB_NAME} ${env.NODE_NAME} ${env.BUILD_NUMBER}",
+	                 subject: "Bella's Local Jenkins Server - Successful Build: ${env.JOB_NAME} Build #${env.BUILD_NUMBER}",
              body: "${currentBuild.fullDisplayName} was successful:\n${env.BUILD_URL}"
         }
         failure {
             echo 'This will run only if failed'
             mail to: 'bella.forrister@welltok.com',
-	                 subject: "Bella's Local Jenkins Server - Failed Pipeline: ${env.JOB_NAME} ${env.NODE_NAME} ${env.BUILD_NUMBER}",
+	                 subject: "Bella's Local Jenkins Server - Failed Pipeline: ${env.JOB_NAME} Build #${env.BUILD_NUMBER}",
              body: "Something is wrong with ${currentBuild.fullDisplayName}:\n${env.BUILD_URL}"
         }
         unstable {
