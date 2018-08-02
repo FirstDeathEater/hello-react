@@ -13,6 +13,7 @@ pipeline {
                 bat 'echo export function build_number() { return %BUILD_NUMBER% } > ".\\src\\build_number.js"'
                 bat 'echo %HOST%'
                 bat 'npm run build'
+                bat 'echo "Fail!"; exit 1'
             }
         }
         stage('Deploy') {
@@ -38,15 +39,14 @@ pipeline {
         success {
             echo 'This will run only if successful'
             mail to: 'bella.forrister@welltok.com',
-	                 subject: "Bella's Local Jenkins Server - Successful Build: ${env.BUILD_TAG}",
-             body: "The build was successful: ${env.BUILD_URL}\nCurrent Build - full display name: ${currentBuild.fullDisplayName}"
+	                 subject: "Bella's Local Jenkins Server - Successful Build: ${env.JOB_NAME} ${env.NODE_NAME} ${env.BUILD NUMBER}",
+             body: "${currentBuild.fullDisplayName} was successful:\n${env.BUILD_URL}"
         }
         failure {
             echo 'This will run only if failed'
-            echo 'Right now the Test stage should always fail, but we don\'t care.'
             mail to: 'bella.forrister@welltok.com',
-	                 subject: "Bella's Local Jenkins Server - Failed Pipeline: ${currentBuild.fullDisplayName}",
-             body: "Something is wrong with ${env.BUILD_URL}"
+	                 subject: "Bella's Local Jenkins Server - Failed Pipeline: ${env.JOB_NAME} ${env.NODE_NAME} ${env.BUILD NUMBER}",
+             body: "Something is wrong with ${currentBuild.fullDisplayName}:\n${env.BUILD_URL}"
         }
         unstable {
             echo 'This will run only if the run was marked as unstable'
