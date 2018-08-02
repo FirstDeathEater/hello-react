@@ -9,7 +9,6 @@ pipeline {
         stage('Build') {
             steps {
                 bat 'npm --version'
-                bat 'exit /b 1'
                 bat 'npm install'
                 bat 'echo export function build_number() { return %BUILD_NUMBER% } > ".\\src\\build_number.js"'
                 bat 'echo %HOST%'
@@ -33,6 +32,8 @@ pipeline {
     post {
         always {
             echo 'This will always run'
+            echo 'To cause an error, add a line where you want the error to happen that says:'
+            echo 'bat \'exit /b 1\''
             echo 'TO DO:'
             echo '  - modify build to clean up old archived versions of website, if the current build was successful'
         }
