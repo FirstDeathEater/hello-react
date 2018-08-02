@@ -37,11 +37,14 @@ pipeline {
         }
         success {
             echo 'This will run only if successful'
+            mail to: 'bella.forrister@welltok.com',
+	                 subject: "Successfule Build: ${currentBuild.fullDisplayName}",
+             body: "The build was successful: ${env.BUILD_URL}"
         }
         failure {
             echo 'This will run only if failed'
             echo 'Right now the Test stage should always fail, but we don\'t care.'
-            mail to: 'team@example.com',
+            mail to: 'bella.forrister@welltok.com',
 	                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
              body: "Something is wrong with ${env.BUILD_URL}"
         }
