@@ -39,7 +39,7 @@ pipeline {
             steps {
 		mail to: 'bella.forrister@welltok.com',
 		     subject: "Bella's Local Jenkins Server - Action Needed Project: ${env.JOB_NAME} Build #${env.BUILD_NUMBER}",
-		     body: "${currentBuild.fullDisplayName} action needed:\n${env.BUILD_URL}"
+		     body: "${currentBuild.fullDisplayName} action needed:\n${env.BUILD_URL}input"
                 input "Ready to deploy to QA?"
             }
         }
