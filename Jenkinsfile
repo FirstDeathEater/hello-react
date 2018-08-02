@@ -20,7 +20,12 @@ pipeline {
                 bat 'echo "Fail!"; exit /b 1'
             }
         }
-        stage('Deploy') {
+	stage('Sanity check') {
+            steps {
+                input "Deploy to development?"
+            }
+        }
+        stage('Deploy - Development') {
             steps {
             	bat 'start cmd.exe /c rc.bat "C:\\savvi\\websites\\hello-react" "C:\\SavviArchive\\websites\\hello_react_%date:~10,4%-%date:~4,2%-%date:~7,2%_%BUILD_NUMBER%"'
             	bat 'del C:\\savvi\\websites\\hello-react\\* /f /q'
