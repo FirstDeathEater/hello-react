@@ -17,12 +17,13 @@ pipeline {
         }
         stage('Test') {
             steps {
-                bat 'echo "Fail!"; exit /b 1'
+                bat 'echo "Fail!"'
+                bat 'exit /b 1'
             }
         }
-	stage('Sanity check') {
+	stage('Deploy to Dev?') {
             steps {
-                input "Deploy to development?"
+                input "Ready to deploy to development?"
             }
         }
         stage('Deploy - Development') {
