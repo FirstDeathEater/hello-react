@@ -38,7 +38,7 @@ pipeline {
         success {
             echo 'This will run only if successful'
             mail to: 'bella.forrister@welltok.com',
-	                 subject: "Bella's Local Jenkins Server - Successfule Build: ${env.BUILD_TAG}
+	                 subject: "Bella's Local Jenkins Server - Successful Build: ${env.BUILD_TAG}"
              body: "The build was successful: ${env.BUILD_URL} \nCurrent Build - full display name: ${currentBuild.fullDisplayName}","
         }
         failure {
